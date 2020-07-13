@@ -19,7 +19,7 @@ import java.util.List;
 
 public class FontConverterV3 {
 
-    private static final int END_CHAR = 256;
+    private static final int END_CHAR = 255;
     private static final int START_CHAR = 32;
 
     private Graphics2D g;
@@ -145,6 +145,8 @@ public class FontConverterV3 {
         }
 
         character = Arrays.copyOf(character, lastByteNotNull + 1);
+		
+		if(code>=127 && code<=159) isVisibleChar=false;
 
         return new LetterData(code, character, width, isVisibleChar);
     }
